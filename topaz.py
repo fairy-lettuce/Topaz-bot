@@ -81,7 +81,7 @@ async def book(interaction: discord.Interaction,
     data = [
         buy_date,
         title,
-        convert_name_to_emoji(buyer.name),
+        convert_user_to_emoji(buyer),
         price,
         rate_user0,
         rate_user1,
@@ -89,9 +89,9 @@ async def book(interaction: discord.Interaction,
     ]
     export_sheet(data)
 
-def convert_name_to_emoji(name: str) -> str:
+def convert_user_to_emoji(user: discord.User) -> str:
     for v in users_info["users"]:
-        if name == v["name"]:
+        if user.id == v["discord_id"]:
             return v["emoji"]
     return ""
 
